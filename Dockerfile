@@ -9,7 +9,12 @@ RUN apt-get update && apt-get install -y wget gnupg2 libzip4 apt-transport-https
     php8.3-redis php8.3-imagick php8.3-dev php-xdebug \
     libsystemd-dev && \
     apt-get autoremove -y && apt-get autoclean && apt-get clean && \
-    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/* \
+    rm -rf /tmp/* /var/tmp/* /var/lib/apt/lists/*
+RUN update-alternatives --set php /usr/bin/php8.3
+RUN update-alternatives --set phar /usr/bin/phar8.3
+RUN update-alternatives --set phar.phar /usr/bin/phar.phar8.3
+RUN update-alternatives --set phpize /usr/bin/phpize8.3
+RUN update-alternatives --set php-config /usr/bin/php-config8.3
 RUN phpenmod xml simplexml mbstring mysql ldap gd dom
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version-2.8.5
